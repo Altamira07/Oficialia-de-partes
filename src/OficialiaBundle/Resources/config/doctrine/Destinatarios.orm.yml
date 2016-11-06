@@ -1,0 +1,57 @@
+OficialiaBundle\Entity\Destinatarios:
+    type: entity
+    table: destinatarios
+    indexes:
+        idx_destinatarios:
+            columns:
+                - id_departamento
+        idx_destinatarios_0:
+            columns:
+                - id_instruccion
+    id:
+        idDestinatario:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_destinatario
+            generator:
+                strategy: SEQUENCE
+    fields:
+        fechaLimite:
+            type: date
+            nullable: false
+            column: fecha_limite
+        entregado:
+            type: boolean
+            nullable: false
+        recibe:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+                comment: 'nombre de quien recibe el documento'
+    manyToOne:
+        idDepartamento:
+            targetEntity: Departamentos
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_departamento:
+                    referencedColumnName: id_departamento
+            orphanRemoval: false
+        idInstruccion:
+            targetEntity: Instrucciones
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_instruccion:
+                    referencedColumnName: id_instruccion
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

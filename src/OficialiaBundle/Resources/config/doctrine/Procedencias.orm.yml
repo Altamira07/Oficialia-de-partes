@@ -1,0 +1,61 @@
+OficialiaBundle\Entity\Procedencias:
+    type: entity
+    table: procedencias
+    indexes:
+        idx_procedencias:
+            columns:
+                - id_institucion
+    id:
+        idProcedencia:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_procedencia
+            generator:
+                strategy: SEQUENCE
+    fields:
+        firma:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+                comment: 'quien firma'
+        puesto:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        dirigida:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        asunto:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        observacion:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+    manyToOne:
+        idInstitucion:
+            targetEntity: Instituciones
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_institucion:
+                    referencedColumnName: id_instituciones
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

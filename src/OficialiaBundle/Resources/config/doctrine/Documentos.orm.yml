@@ -1,0 +1,89 @@
+OficialiaBundle\Entity\Documentos:
+    type: entity
+    table: documentos
+    indexes:
+        idx_documentos:
+            columns:
+                - id_formato
+        idx_documentos_0:
+            columns:
+                - id_destino
+        idx_documentos_1:
+            columns:
+                - id_procedencia
+        idx_documentos_2:
+            columns:
+                - id_tipo_documento
+    id:
+        idDocumento:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_documento
+            generator:
+                strategy: SEQUENCE
+    fields:
+        documento:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        folio:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'folio del documento'
+        fechaDocumento:
+            type: date
+            nullable: false
+            column: fecha_documento
+        fechaRecepcion:
+            type: date
+            nullable: false
+            column: fecha_recepcion
+    manyToOne:
+        idFormato:
+            targetEntity: Formatos
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_formato:
+                    referencedColumnName: id_formato
+            orphanRemoval: false
+        idDestino:
+            targetEntity: Destinatarios
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_destino:
+                    referencedColumnName: id_destinatario
+            orphanRemoval: false
+        idProcedencia:
+            targetEntity: Procedencias
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_procedencia:
+                    referencedColumnName: id_procedencia
+            orphanRemoval: false
+        idTipoDocumento:
+            targetEntity: TiposDocumentos
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tipo_documento:
+                    referencedColumnName: id_tipo_documento
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

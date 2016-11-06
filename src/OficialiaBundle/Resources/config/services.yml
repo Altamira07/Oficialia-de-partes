@@ -1,0 +1,4 @@
+services:
+#    oficialia.example:
+#        class: OficialiaBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

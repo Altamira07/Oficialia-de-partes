@@ -1,0 +1,21 @@
+OficialiaBundle\Entity\Departamentos:
+    type: entity
+    table: departamentos
+    id:
+        idDepartamento:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_departamento
+            generator:
+                strategy: SEQUENCE
+    fields:
+        departamento:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

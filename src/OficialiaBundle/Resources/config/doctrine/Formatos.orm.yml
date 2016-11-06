@@ -1,0 +1,22 @@
+OficialiaBundle\Entity\Formatos:
+    type: entity
+    table: formatos
+    id:
+        idFormato:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: formato
+            id: true
+            column: id_formato
+            generator:
+                strategy: SEQUENCE
+    fields:
+        formato:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

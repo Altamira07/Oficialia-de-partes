@@ -1,0 +1,21 @@
+OficialiaBundle\Entity\Instrucciones:
+    type: entity
+    table: instrucciones
+    id:
+        idInstruccion:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_instruccion
+            generator:
+                strategy: SEQUENCE
+    fields:
+        instruccion:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

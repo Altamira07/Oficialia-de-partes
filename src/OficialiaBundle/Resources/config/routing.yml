@@ -1,0 +1,3 @@
+oficialia_homepage:
+    path:     /
+    defaults: { _controller: OficialiaBundle:Default:index }

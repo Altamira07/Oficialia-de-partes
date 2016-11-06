@@ -1,0 +1,21 @@
+OficialiaBundle\Entity\Instituciones:
+    type: entity
+    table: instituciones
+    id:
+        idInstituciones:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_instituciones
+            generator:
+                strategy: SEQUENCE
+    fields:
+        institucion:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

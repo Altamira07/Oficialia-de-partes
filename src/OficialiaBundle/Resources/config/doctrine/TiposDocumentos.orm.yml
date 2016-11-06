@@ -1,0 +1,23 @@
+OficialiaBundle\Entity\TiposDocumentos:
+    type: entity
+    table: tipos_documentos
+    id:
+        idTipoDocumento:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'Tipo de documento'
+            id: true
+            column: id_tipo_documento
+            generator:
+                strategy: SEQUENCE
+    fields:
+        tipoDocumento:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: tipo_documento
+    lifecycleCallbacks: {  }
