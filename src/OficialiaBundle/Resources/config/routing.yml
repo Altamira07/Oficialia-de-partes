@@ -1,3 +1,25 @@
 oficialia_homepage:
     path:     /
     defaults: { _controller: OficialiaBundle:Default:index }
+add_institucion:
+    path:     /agregar-institucion
+    defaults: { _controller: OficialiaBundle:Institucion:addInstitucion }
+add_departamento:
+    path:     /agregar-departamento
+    defaults: {_controller: OficialiaBundle:Departamento:addDepartamento }
+list_departamento:
+    path:    /lista-departamentos
+    defaults: {_controller: OficialiaBundle:Departamento:listDepartamentos }
+del_departamento:
+    path:    /eliminar-departamento/{id}
+    defaults: {_controller:OficialiaBundle:Departamento:delDepartamento}
+up_departamento:
+    path:    /editar-departamento/{id}
+    defaults: {_controller:OficialiaBundle:Departamento:upDepartamento}
+
+add_formato:
+    path:     /agregar-formato
+    defaults: {_controller: OficialiaBundle:Formato:addFormato }
+add_tipoDocumento:
+    path:      /agregar-tipo-documento
+    defaults: {_controller: OficialiaBundle:TipoDocumento:addTipoDocumento }
