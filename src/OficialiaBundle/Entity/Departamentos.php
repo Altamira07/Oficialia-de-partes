@@ -27,12 +27,6 @@ class Departamentos
     {
         return $this->idDepartamento;
     }
-
-    public function setIdDepartamento($idDepartamento)
-    {
-        $this->idDepartamento = $idDepartamento;
-        return $this;
-    }
     /**
      * Set departamento
      *

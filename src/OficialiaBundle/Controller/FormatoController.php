@@ -21,6 +21,37 @@ class FormatoController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('add_formato'));
         }
-        return $this->render('OficialiaBundle:Formato:add_formato.html.twig',['form'=>$form->createView()]);
+        return $this->render('OficialiaBundle:Formato:add_formato.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar formato"]);
+    }
+    public function upFormatoAction(Request $request,$id)
+    {
+        $formato = $this->getDoctrine()->getRepository('OficialiaBundle:Formatos')->find($id);
+        $form = $this->createForm(FormatosType::class,$formato);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($formato);
+            $em->flush();
+            $this->redirect($this->generateUrl('add_formato'));
+        }
+        return $this->render('OficialiaBundle:Formato:add_formato.html.twig',['form'=>$form->createView(),'titulo'=>'Actualizar formato']);
+    }
+    public function listFormatoAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery("select f.idFormato as id, f.formato as formato from OficialiaBundle:Formatos f");
+        $formatos = $query->getResult();
+
+        return $this->render('OficialiaBundle:Formato:list_formatos.html.twig',['formatos'=>$formatos]);
+    }
+    public function delFormatoAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $formato = $em->getRepository('OficialiaBundle:Formatos')->find($id);
+        $em->remove($formato);
+        $em->flush();
+        return $this->redirect($this->generateUrl('list_formato'));
     }
 }

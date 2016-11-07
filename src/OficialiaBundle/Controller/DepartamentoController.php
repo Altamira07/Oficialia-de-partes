@@ -48,7 +48,6 @@ class DepartamentoController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            $departamento->setIdDepartamento($id);
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($departamento);
             $em->flush();

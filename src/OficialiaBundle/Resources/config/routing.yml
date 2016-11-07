@@ -1,9 +1,14 @@
 oficialia_homepage:
     path:     /
     defaults: { _controller: OficialiaBundle:Default:index }
+#Rutas para institucion
 add_institucion:
     path:     /agregar-institucion
     defaults: { _controller: OficialiaBundle:Institucion:addInstitucion }
+list_institucion:
+    path:   /lista-institucion
+    defaults: {_controller: OficialiaBundle:Institucion:listInstitucion }
+#Rutas para departamentos
 add_departamento:
     path:     /agregar-departamento
     defaults: {_controller: OficialiaBundle:Departamento:addDepartamento }
@@ -16,10 +21,20 @@ del_departamento:
 up_departamento:
     path:    /editar-departamento/{id}
     defaults: {_controller:OficialiaBundle:Departamento:upDepartamento}
-
+#Rurtas para formatos
 add_formato:
     path:     /agregar-formato
     defaults: {_controller: OficialiaBundle:Formato:addFormato }
+up_formato:
+    path:     /editar-formato/{id}
+    defaults: {_controller: OficialiaBundle:Formato:upFormato}
+list_formato:
+    path:    /lista-formatos
+    defaults: {_controller: OficialiaBundle:Formato:listFormato}
+del_formato:
+    path:   /elimnar-formato/{id}
+    defaults: {_controller: OficialiaBundle:Formato:delFormato}
+#Rutas para tipo de documentos 
 add_tipoDocumento:
     path:      /agregar-tipo-documento
     defaults: {_controller: OficialiaBundle:TipoDocumento:addTipoDocumento }

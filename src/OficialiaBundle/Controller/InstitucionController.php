@@ -23,4 +23,12 @@ class InstitucionController extends Controller
         }
         return $this->render('OficialiaBundle:Institucion:add_institucion.html.twig',['form'=>$form->createView()]);
     }
+    public function listInstitucionAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('select i.idInstituciones as id, i.institucion as institucion from OficialiaBundle:Instituciones i');
+        $instituciones = $query->getResult();
+
+        return $this->render('OficialiaBundle:Institucion:list_institucion.html.twig',['instituciones'=>$instituciones]);
+    }
 }
