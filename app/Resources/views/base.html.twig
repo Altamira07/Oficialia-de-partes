@@ -4,64 +4,46 @@
         <meta charset="UTF-8" />
         <title>{% block titulo %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.12.3.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
     </head>
-    <body >
-    <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Oficialia en partes</a>
-    </div>
-<!--DEPLEGABLE-->
+    <body class=" grey lighten-4">
+     <nav class="light-blue lighten-1">
+        <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Oficialia de partes</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
     
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Instituciones <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('add_institucion') }}">Agregar</a></li>
-            <li><a href="#">Listar</a></li>
+            <li><a href="{{ path('list_departamento') }}">Departamentos</a></li>
+            <li><a href="{{ path('list_institucion') }}">Instituciones</a></li>
+            <li><a href="{{ path('list_formato')}}">Formatos</a></li>
+            <li><a href="{{ path('list_tipoDocumento') }}">Tipos de documentos</a></li>
           </ul>
-        </li>
+        <ul class="side-nav" id="mobile-demo">
+                <li><a href="{{ path('list_departamento') }}">Departamentos</a></li>
+            <li><a href="{{ path('list_institucion') }}">Instituciones</a></li>
+            <li><a href="{{ path('list_formato')}}">Formatos</a></li>
+            <li><a href="{{ path('list_tipoDocumento') }}">Tipos de documentos</a></li>
         
+        </ul>
+        </div>
+      </nav>
+      <script type="text/javascript">
+          $( document ).ready(function(){
+            $('#tabla').DataTable();
+            $(".button-collapse").sideNav();
+          })
+      </script>
 
-      <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departamentos <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('add_departamento') }}">Agregar</a></li>
-            <li><a href="#">Listar</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tipos de documentos <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('add_tipoDocumento') }}">Agregar</a></li>
-            <li><a href="#">Listar</a></li>
-          </ul>
-        </li>
-                <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formatos <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('add_formato') }}">Agregar</a></li>
-            <li><a href="#">Listar</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+
+
         {% block body %}{% endblock %}
         {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('js/vendor/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

@@ -21,15 +21,25 @@ class InstitucionController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('list_institucion'));    
         }
-        return $this->render('OficialiaBundle:Institucion:add_institucion.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar instituto"]);
+        return $this->render('OficialiaBundle:Institucion:up_institucion.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar instituto"]);
     }
-    public function listInstitucionAction()
+    public function listInstitucionAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('select i.idInstituciones as id, i.institucion as institucion from OficialiaBundle:Instituciones i');
         $instituciones = $query->getResult();
 
-        return $this->render('OficialiaBundle:Institucion:list_institucion.html.twig',['instituciones'=>$instituciones]);
+        $institucion = new Instituciones();
+        $form = $this->createForm(InstitucionesType::class,$institucion);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid() )
+        {
+            $em->persist($institucion);
+            $em->flush();
+            return $this->redirect($this->generateUrl('list_institucion'));    
+        }
+
+        return $this->render('OficialiaBundle:Institucion:list_institucion.html.twig',['instituciones'=>$instituciones,'form'=>$form->createView()]);
     }
     public function upInstitucionAction(Request $request,$id)
     {
@@ -43,7 +53,7 @@ class InstitucionController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('list_institucion'));
         }
-        return $this->render('OficialiaBundle:Institucion:add_institucion.html.twig',['form'=>$form->createView(),'titulo'=>"Editar instituto"]);
+        return $this->render('OficialiaBundle:Institucion:up_institucion.html.twig',['form'=>$form->createView(),'titulo'=>"Editar instituto"]);
     }
     public function delInstitucionAction($id)
     {

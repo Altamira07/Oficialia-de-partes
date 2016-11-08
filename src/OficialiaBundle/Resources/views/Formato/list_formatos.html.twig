@@ -1,11 +1,30 @@
 {% extends '::base.html.twig' %}
 {% block titulo %}Lista de formatos{% endblock%}
 {% block body %}
-<div class="col-md-6 col-md-offset-3">
-    <div class="panel panel-default">
-        <div class="panel-heading">Lista de formatos</div>
-        <div class="panel-body">
-            <table class="table table-hover">
+<div class="row">
+    <div class="col s6 offset-s3"> 
+        <ul class="collapsible" data-collapsible="accordion">   <li>
+            <div class="collapsible-header"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar formato</div>
+            <div class="collapsible-body">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="input-field col s8">
+                        {{ form_row(form.formato,{'label':'Agregar formato'}) }}
+                    </div>
+                    <div class="col s4">
+                    <br>
+                        {{ form_widget(form.guardar,{'attr':{'class':'btn b'},'label':'Agregar'}) }}
+                        
+                    </div>
+                </div>
+            {{form_end(form) }}
+            </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col s6 offset-s3">
+        <div class="card-panel white">
+            <table class="striped display" id="tabla" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -18,13 +37,17 @@
                     <tr>
                         <td>{{ f.id }}</td>
                         <td>{{ f.formato }}</td>
-                        <td><a href="{{ path('del_formato',{'id': f.id }) }}" class="btn"><span class="glyphicon glyphicon-remove-sign"></span></a><a href="{{ path('up_formato',{'id': f.id }) }}" class="btn"><span class="glyphicon glyphicon-wrench"></span></a></td>
+                        <td>
+<a href="{{ path('del_formato',{'id': f.id }) }}" class="waves-effect btn red darken-4""><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+
+<a href="{{ path('up_formato',{'id': f.id }) }}" class="btn"><i class="fa fa-wrench" aria-hidden="true"></a></td>
                     </tr>
                         {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+   
 </div>
-
 {% endblock %}

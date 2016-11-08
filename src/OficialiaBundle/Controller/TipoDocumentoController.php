@@ -25,7 +25,7 @@ class TipoDocumentoController extends Controller
             return $this->redirect($this->generateUrl('list_tipoDocumento'));
 
         }
-        return $this->render('OficialiaBundle:TipoDocumento:add_tipodocumento.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar tipo de documento"]);
+        return $this->render('OficialiaBundle:TipoDocumento:up_tipodocumento.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar tipo de documento"]);
     }
     public function delTipoDocumentoAction($id)
     {
@@ -50,14 +50,27 @@ class TipoDocumentoController extends Controller
             return $this->redirect($this->generateUrl('list_tipoDocumento'));
 
         }
-        return $this->render('OficialiaBundle:TipoDocumento:add_tipodocumento.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar tipo de documento"]);
+        return $this->render('OficialiaBundle:TipoDocumento:up_tipodocumento.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar tipo de documento"]);
     }
-    public function listTipoDocumentoAction()
+    public function listTipoDocumentoAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('select t.idTipoDocumento as id, t.tipoDocumento as tipoDocumento from OficialiaBundle:TiposDocumentos t');
-        $tipo = $query->getResult();
+        $tipos = $query->getResult();
+        
+        $tipo = new TiposDocumentos();
+        $form = $this->createForm(TiposDocumentosType::class,$tipo);
+        $form->handleRequest($request);
 
-        return $this->render('OficialiaBundle:TipoDocumento:list_tipodocumento.html.twig',['tipo'=>$tipo]);
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($tipo);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('list_tipoDocumento'));
+
+        }
+        return $this->render('OficialiaBundle:TipoDocumento:list_tipodocumento.html.twig',['tipos'=>$tipos,'form'=>$form->createView()]);
     }
 }
