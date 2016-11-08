@@ -18,7 +18,7 @@
                     <tr>
                         <td>{{ i.id }}</td>
                         <td>{{ i.institucion }}</td>
-                        <td><a href="{{ path('del_formato',{'id': i.id }) }}" class="btn"><span class="glyphicon glyphicon-remove-sign"></span></a><a href="{{ path('up_formato',{'id': i.id }) }}" class="btn"><span class="glyphicon glyphicon-wrench"></span></a></td>
+                        <td><a href="{{ path('del_institucion',{'id': i.id }) }}" class="btn"><span class="glyphicon glyphicon-remove-sign"></span></a><a href="{{ path('up_institucion',{'id': i.id }) }}" class="btn"><span class="glyphicon glyphicon-wrench"></span></a></td>
                     </tr>
                         {% endfor %}
                 </tbody>

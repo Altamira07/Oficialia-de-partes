@@ -14,14 +14,14 @@ class InstitucionController extends Controller
         $institucion = new Instituciones();
         $form = $this->createForm(InstitucionesType::class,$institucion);
         $form->handleRequest($request);
-        if ($form->isValid() )
+        if ($form->isSubmitted() && $form->isValid() )
         {
             $em = $this->getDoctrine()->getManager();
             $em->persist($institucion);
             $em->flush();
-            return $this->redirect($this->generateUrl('add_institucion'));    
+            return $this->redirect($this->generateUrl('list_institucion'));    
         }
-        return $this->render('OficialiaBundle:Institucion:add_institucion.html.twig',['form'=>$form->createView()]);
+        return $this->render('OficialiaBundle:Institucion:add_institucion.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar instituto"]);
     }
     public function listInstitucionAction()
     {
@@ -30,5 +30,27 @@ class InstitucionController extends Controller
         $instituciones = $query->getResult();
 
         return $this->render('OficialiaBundle:Institucion:list_institucion.html.twig',['instituciones'=>$instituciones]);
+    }
+    public function upInstitucionAction(Request $request,$id)
+    {
+        $instituto = $this->getDoctrine()->getRepository('OficialiaBundle:Instituciones')->find($id);
+        $form = $this->createForm(InstitucionesType::class,$instituto);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($instituto);
+            $em->flush();
+            return $this->redirect($this->generateUrl('list_institucion'));
+        }
+        return $this->render('OficialiaBundle:Institucion:add_institucion.html.twig',['form'=>$form->createView(),'titulo'=>"Editar instituto"]);
+    }
+    public function delInstitucionAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $institucion = $em->getRepository('OficialiaBundle:Instituciones')->find($id);
+        $em->remove($institucion);
+        $em->flush();
+        return $this->redirect($this->generateUrl('list_institucion'));
     }
 }

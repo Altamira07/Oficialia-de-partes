@@ -22,10 +22,42 @@ class TipoDocumentoController extends Controller
             $em->persist($tipo);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('add_tipoDocumento'));
+            return $this->redirect($this->generateUrl('list_tipoDocumento'));
 
         }
+        return $this->render('OficialiaBundle:TipoDocumento:add_tipodocumento.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar tipo de documento"]);
+    }
+    public function delTipoDocumentoAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tipo = $em->getRepository('OficialiaBundle:TiposDocumentos')->find($id);
+        $em->remove($tipo);
+        $em->flush();
+        return $this->redirect($this->generateUrl('list_tipoDocumento'));
+    }
+    public function upTipoDocumentoAction(Request $request,$id)
+    {
+        $tipo = $this->getDoctrine()->getRepository('OficialiaBundle:TiposDocumentos')->find($id);
+        $form = $this->createForm(TiposDocumentosType::class,$tipo);
+        $form->handleRequest($request);
 
-        return $this->render('OficialiaBundle:TipoDocumento:add_tipodocumento.html.twig',['form'=>$form->createView()]);
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($tipo);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('list_tipoDocumento'));
+
+        }
+        return $this->render('OficialiaBundle:TipoDocumento:add_tipodocumento.html.twig',['form'=>$form->createView(),'titulo'=>"Agregar tipo de documento"]);
+    }
+    public function listTipoDocumentoAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('select t.idTipoDocumento as id, t.tipoDocumento as tipoDocumento from OficialiaBundle:TiposDocumentos t');
+        $tipo = $query->getResult();
+
+        return $this->render('OficialiaBundle:TipoDocumento:list_tipodocumento.html.twig',['tipo'=>$tipo]);
     }
 }
