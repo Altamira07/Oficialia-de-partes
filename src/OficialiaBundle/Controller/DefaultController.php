@@ -10,4 +10,8 @@ class DefaultController extends Controller
     {
         return $this->render('OficialiaBundle:Default:index.html.twig');
     }
+    public function cargandoAction()
+    {
+        return $this->render('OficialiaBundle:Default:cargando.html.twig');
+    }
 }

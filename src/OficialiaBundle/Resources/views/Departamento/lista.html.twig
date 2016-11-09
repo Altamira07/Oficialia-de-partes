@@ -1,0 +1,21 @@
+<table class="striped display" id="tabla" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Departamento</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in departamentos %}
+        <tr>
+            <td>{{ d.id }}</td>
+                <td>{{ d.departamento }}</td>
+                <td>
+<a href="{{ path('del_departamento',{'id': d.id }) }}" class="waves-effect btn red darken-4"><i class="fa fa-trash" aria-hidden="true"></i></a>
+<a href="{{ path('up_departamento',{'id': d.id }) }}" class="btn "><i class="fa fa-wrench" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

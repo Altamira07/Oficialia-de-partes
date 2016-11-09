@@ -55,8 +55,6 @@ class TipoDocumentoController extends Controller
     public function listTipoDocumentoAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('select t.idTipoDocumento as id, t.tipoDocumento as tipoDocumento from OficialiaBundle:TiposDocumentos t');
-        $tipos = $query->getResult();
         
         $tipo = new TiposDocumentos();
         $form = $this->createForm(TiposDocumentosType::class,$tipo);
@@ -71,6 +69,13 @@ class TipoDocumentoController extends Controller
             return $this->redirect($this->generateUrl('list_tipoDocumento'));
 
         }
-        return $this->render('OficialiaBundle:TipoDocumento:list_tipodocumento.html.twig',['tipos'=>$tipos,'form'=>$form->createView()]);
+        return $this->render('OficialiaBundle:TipoDocumento:tipodocumento.html.twig',['form'=>$form->createView()]);
+    }
+    public function getTipoDocumentoAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('select t.idTipoDocumento as id, t.tipoDocumento as tipoDocumento from OficialiaBundle:TiposDocumentos t');
+        $tipos = $query->getResult();
+        return $this->render('OficialiaBundle:TipoDocumento:lista.html.twig',['tipos'=>$tipos]);
     }
 }

@@ -23,31 +23,19 @@
         </ul>
     </div>
     <div class="col s6 offset-s3">
-        <div class="card-panel white">
-            <table class="striped display" id="tabla" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Formatos</th>
-                        <th>Accion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for f in formatos %}
-                    <tr>
-                        <td>{{ f.id }}</td>
-                        <td>{{ f.formato }}</td>
-                        <td>
-<a href="{{ path('del_formato',{'id': f.id }) }}" class="waves-effect btn red darken-4""><i class="fa fa-trash" aria-hidden="true"></i></a>
-
-
-<a href="{{ path('up_formato',{'id': f.id }) }}" class="btn"><i class="fa fa-wrench" aria-hidden="true"></a></td>
-                    </tr>
-                        {% endfor %}
-                </tbody>
-            </table>
+        <div class="card-panel white" id="contenedor">
+            
         </div>
     </div>
    
 </div>
+{% endblock %}
+{% block javascripts %}
+<script>
+    $(document).ready(function (){
+    $('#contenedor').load("{{ path('cargando') }}");
+        
+        $('#contenedor').load("{{ path('get_formato') }}",function(){$('#tabla').DataTable();} )
+    });
+</script>
 {% endblock %}

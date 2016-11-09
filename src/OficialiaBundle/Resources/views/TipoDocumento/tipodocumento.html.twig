@@ -7,7 +7,7 @@
             <li>
                 <div class="collapsible-header"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar tipo de documento</div>
                 <div class="collapsible-body">
-                    {{ form_start(form,{'attr':{'class':'form-inline'}}) }}
+                    {{ form_start(form) }}
                      <div class="row">
                         <div class="input-field col s8">
                             {{form_row(form.tipoDocumento,{'attr':{'class':'validate'}}) }}
@@ -24,27 +24,19 @@
         </li>
     </div>
     <div class="col s6 offset-s3">
-        <div class="card-panel white">
-           <table class="striped display" id="tabla" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tipo de documento</th>
-                        <th>Accion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for t in tipos %}
-                    <tr>
-                        <td>{{ t.id }}</td>
-                        <td>{{ t.tipoDocumento }}</td>
-                        <td><a href="{{ path('del_tipoDocumento',{'id': t.id }) }}" class="waves-effect btn red darken-4"><i class="fa fa-trash" aria-hidden="true"></i></a><a href="{{ path('up_tipoDocumento',{'id': t.id }) }}" class="btn "><i class="fa fa-wrench" aria-hidden="true"></i></a></td>
-                    </tr>
-                        {% endfor %}
-                </tbody>
-            </table>
+        <div class="card-panel white" id="contenedor">
+           
         </div>
     </div>
 </div>            
         
+{% endblock %}
+{% block javascripts %}
+<script>
+    $(document).ready(function (){
+    $('#contenedor').load("{{ path('cargando') }}");
+        
+        $('#contenedor').load("{{ path('get_tipoDocumento') }}",function(){$('#tabla').DataTable();} )
+    });
+</script>
 {% endblock %}

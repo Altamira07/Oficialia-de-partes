@@ -26,9 +26,7 @@ class InstitucionController extends Controller
     public function listInstitucionAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('select i.idInstituciones as id, i.institucion as institucion from OficialiaBundle:Instituciones i');
-        $instituciones = $query->getResult();
-
+        
         $institucion = new Instituciones();
         $form = $this->createForm(InstitucionesType::class,$institucion);
         $form->handleRequest($request);
@@ -39,7 +37,15 @@ class InstitucionController extends Controller
             return $this->redirect($this->generateUrl('list_institucion'));    
         }
 
-        return $this->render('OficialiaBundle:Institucion:list_institucion.html.twig',['instituciones'=>$instituciones,'form'=>$form->createView()]);
+        return $this->render('OficialiaBundle:Institucion:institucion.html.twig',['form'=>$form->createView()]);
+    }
+    public function getInstitucionAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('select i.idInstituciones as id, i.institucion as institucion from OficialiaBundle:Instituciones i');
+        $instituciones = $query->getResult();
+        return $this->render('OficialiaBundle:Institucion:lista.html.twig',['instituciones'=>$instituciones]);
+
     }
     public function upInstitucionAction(Request $request,$id)
     {

@@ -1,0 +1,18 @@
+ <table id="tabla" class="striped display" id="tabla" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Institucion</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in instituciones %}
+          <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.institucion }}</td>
+            <td><a href="{{ path('del_institucion',{'id': i.id }) }}" class="waves-effect btn red darken-4"><i class="fa fa-trash" aria-hidden="true"></i></a><a href="{{ path('up_institucion',{'id': i.id }) }}" class="btn"><i class="fa fa-wrench" aria-hidden="true"></i></a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>

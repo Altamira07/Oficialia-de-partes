@@ -1,13 +1,16 @@
 oficialia_homepage:
     path:     /
     defaults: { _controller: OficialiaBundle:Default:index }
+cargando:
+    path:   /cargando
+    defaults: {_controller: OficialiaBundle:Default:cargando}
 
 #Rutas para institucion
 add_institucion:
     path:     /agregar-institucion
     defaults: { _controller: OficialiaBundle:Institucion:addInstitucion }
 list_institucion:
-    path:   /lista-institucion
+    path:   /institucion
     defaults: {_controller: OficialiaBundle:Institucion:listInstitucion }
 up_institucion:
     path:   /editar-institucion/{id}
@@ -15,20 +18,27 @@ up_institucion:
 del_institucion:
     path:   /elimar-institucion/{id}
     defaults: {_controller: OficialiaBundle:Institucion:delInstitucion }
+get_institucion:
+    path:   /lista-institucion
+    defaults: {_controller: OficialiaBundle:Institucion:getInstitucion }
 
 #Rutas para departamentos
 add_departamento:
     path:     /agregar-departamento
     defaults: {_controller: OficialiaBundle:Departamento:addDepartamento }
 list_departamento:
-    path:    /lista-departamentos
+    path:    /departamentos
     defaults: {_controller: OficialiaBundle:Departamento:listDepartamentos }
 del_departamento:
     path:    /eliminar-departamento/{id}
     defaults: {_controller:OficialiaBundle:Departamento:delDepartamento}
 up_departamento:
     path:    /editar-departamento/{id}
-    defaults: {_controller:OficialiaBundle:Departamento:upDepartamento}
+    defaults: {_controller: OficialiaBundle:Departamento:upDepartamento}
+get_departamento:
+    path:   /lista-departamentos
+    defaults: {_controller: OficialiaBundle:Departamento:getDepartamentos }
+
 
 #Rurtas para formatos
 add_formato:
@@ -38,18 +48,22 @@ up_formato:
     path:     /editar-formato/{id}
     defaults: {_controller: OficialiaBundle:Formato:upFormato}
 list_formato:
-    path:    /lista-formatos
+    path:    /formatos
     defaults: {_controller: OficialiaBundle:Formato:listFormato}
 del_formato:
     path:   /elimnar-formato/{id}
     defaults: {_controller: OficialiaBundle:Formato:delFormato}
+get_formato:
+    path:   /lista-formato
+    defaults: {_controller: OficialiaBundle:Formato:getFormato}
+
 
 #Rutas para tipo de documentos 
 add_tipoDocumento:
     path:      /agregar-tipo-documento
     defaults: {_controller: OficialiaBundle:TipoDocumento:addTipoDocumento }
 list_tipoDocumento:
-    path:      /lista-tipo-documento
+    path:      /tipo-documento
     defaults: {_controller: OficialiaBundle:TipoDocumento:listTipoDocumento }
 up_tipoDocumento:
     path:      /editar-tipo-documento/{id}
@@ -57,3 +71,6 @@ up_tipoDocumento:
 del_tipoDocumento:
     path:      /elimar-tipo-documento/{id}
     defaults: {_controller: OficialiaBundle:TipoDocumento:delTipoDocumento }
+get_tipoDocumento:
+    path:   /lista-tipo-documento
+    defaults: {_controller: OficialiaBundle:TipoDocumento:getTipoDocumento }

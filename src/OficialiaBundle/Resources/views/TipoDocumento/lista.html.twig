@@ -1,0 +1,18 @@
+<table class="striped display" id="tabla" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo de documento</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in tipos %}
+                    <tr>
+                        <td>{{ t.id }}</td>
+                        <td>{{ t.tipoDocumento }}</td>
+                        <td><a href="{{ path('del_tipoDocumento',{'id': t.id }) }}" class="waves-effect btn red darken-4"><i class="fa fa-trash" aria-hidden="true"></i></a><a href="{{ path('up_tipoDocumento',{'id': t.id }) }}" class="btn "><i class="fa fa-wrench" aria-hidden="true"></i></a></td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+            </table>

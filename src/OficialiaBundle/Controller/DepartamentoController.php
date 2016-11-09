@@ -26,19 +26,24 @@ class DepartamentoController extends Controller
     public function listDepartamentosAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('select d.idDepartamento as id, d.departamento as departamento from OficialiaBundle:Departamentos d');
-        $departamentos = $query->getResult();
         $departamento = new Departamentos();
         $form = $this->createForm(DepartamentosType::class,$departamento);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            $em = $this->getDoctrine()->getManager();
             $em->persist($departamento);
             $em->flush();
             return $this->redirect($this->generateUrl('list_departamento'));
         }
-        return $this->render('OficialiaBundle:Departamento:list_departamentos.html.twig',['departamentos'=>$departamentos,'form'=>$form->createView()]);
+        return $this->render('OficialiaBundle:Departamento:departamentos.html.twig',['form'=>$form->createView()]);
+    }
+    public function getDepartamentosAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('select d.idDepartamento as id, d.departamento as departamento from OficialiaBundle:Departamentos d');
+        $departamentos = $query->getResult();
+        
+        return $this->render('OficialiaBundle:Departamento:lista.html.twig',['departamentos'=>$departamentos]);
     }
     public function delDepartamentoAction($id)
     {
