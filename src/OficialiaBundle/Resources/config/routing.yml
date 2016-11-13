@@ -1,9 +1,24 @@
 oficialia_homepage:
     path:     /
     defaults: { _controller: OficialiaBundle:Default:index }
+documento:
+    path:   /agregar-documento
+    defaults: {_controller: OficialiaBundle:Documento:inicio}
+guardar_documento:
+    path:   /guardar-documento
+    defaults: {_controller: OficialiaBundle:Documento:guardar}
 cargando:
     path:   /cargando
     defaults: {_controller: OficialiaBundle:Default:cargando}
+documento_departamento:
+    path:   /documento-departamento
+    defaults: {_controller: OficialiaBundle:Documento:departamento}
+documento_instruccion:
+    path:   /documento-instruccion
+    defaults: {_controller: OficialiaBundle:Documento:instruccion}
+documento_institucion:
+    path:   /documento-institucion
+    defaults: {_controller: OficialiaBundle:Documento:institucion}
 
 #Rutas para institucion
 add_institucion:

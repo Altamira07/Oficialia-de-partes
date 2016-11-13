@@ -7,28 +7,29 @@
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+       <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
     </head>
     <body class=" grey lighten-4">
      <nav class="light-blue lighten-1">
         <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Oficialia de partes</a>
+      <a href="{{ path('oficialia_homepage') }}" class="brand-logo">Oficialia de partes</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars" aria-hidden="true"></i></a>
           <ul class="right hide-on-med-and-down">
     
+          <li><a href="{{ path('documento') }}">Agregar documento</a></li>
             <li><a href="{{ path('list_departamento') }}" class="waves-effect">Departamentos</a></li>
             <li><a href="{{ path('list_institucion') }}" class="waves-effect">Instituciones</a></li>
             <li><a href="{{ path('list_formato')}}" class="waves-effect" >Formatos</a></li>
             <li><a href="{{ path('list_tipoDocumento') }}" class="waves-effect">Tipos de documentos</a></li>
           </ul>
         <ul class="side-nav" id="mobile-demo">
-                <li><a href="{{ path('list_departamento') }}">Departamentos</a></li>
+            <li><a href="{{ path('documento') }}">Agregar Documento</a></li>
+            <li><a href="{{ path('list_departamento') }}">Departamentos</a></li>
             <li><a href="{{ path('list_institucion') }}">Instituciones</a></li>
             <li><a href="{{ path('list_formato')}}">Formatos</a></li>
             <li><a href="{{ path('list_tipoDocumento') }}">Tipos de documentos</a></li>
-        
         </ul>
         </div>
       </nav>

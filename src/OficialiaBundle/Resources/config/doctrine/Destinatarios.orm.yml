@@ -20,7 +20,7 @@ OficialiaBundle\Entity\Destinatarios:
                 strategy: SEQUENCE
     fields:
         fechaLimite:
-            type: date
+            type: string
             nullable: false
             column: fecha_limite
         entregado:
