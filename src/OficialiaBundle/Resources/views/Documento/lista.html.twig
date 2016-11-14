@@ -1,0 +1,18 @@
+<table class="striped display" id="tabla" cellspacing="0" width="100%" id="tabla">
+    <thead>
+        <tr>
+            <th>Folio</th>
+            <th>Institucion de procedencia</th>
+            <th>Descargar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in documentos %}
+            <tr>
+                <td>{{ d.folio }}</td>
+                <td>{{ d.institucion }}</td>
+                <td><a href="{{ asset('uploads/documentos/'~d.documento)}}" class="btn green accent-4 waves-effect"><i class="fa fa-download" aria-hidden="true"></i></a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

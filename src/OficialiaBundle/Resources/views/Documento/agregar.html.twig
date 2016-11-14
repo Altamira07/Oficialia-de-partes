@@ -1,0 +1,118 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div class="col s6 offset-s3 withe" id="contenedor">
+     <ul class="collapsible" data-collapsible="accordion">   
+        <li>
+        <div class="collapsible-header"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Documento</div>
+    <div class="collapsible-body white">
+        {{ form_start(form,{'attr':{'id':'formulario'}}) }}
+        <h5>Datos del documento</h5>
+        <div class="row">
+            <div class="input-field">
+                {{ form_row(form.folio) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6 input-field">
+            <label>Fecha del documento</label><br>
+                {{ form_row(form.fecha_documento,{'attr':{'class':'datepicker'}}) }}
+            </div>
+            <div class="col s6 input-field">
+            <label >fecha de recepcion</label><br>
+                {{ form_row(form.fecha_recepcion,{'attr':{'class':'datepicker'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6 input-field">
+                <div class="row">
+                    <label>Fomato</label><br>
+                </div>
+                    {{ form_widget(form.formato,{'attr':{'class':'browser-default'}}) }}
+            </div>
+            <div class="col s6 input-field">
+                <div class="row">
+                    <label for="">Tipo de documento</label><br>
+                </div>
+                {{ form_widget(form.tipo_documento,{'attr':{'class':'browser-default'}}) }}
+            </div>
+        </div>
+        <h5>Datos del destinatario</h5>
+        <div class="row">
+            <div class="col s6 input-field">
+                <label>Fecha limite </label><br>
+                {{ form_row(form.fecha_limite,{'attr':{'class':'datepicker'}}) }}
+            </div>
+            <div class="col s6 input-field">
+                {{ form_row(form.entregado) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                {{ form_row(form.recibe) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6 input-field">
+            <label for="departamento">Departamento</label><br><br>
+                {{ form_widget(form.departamento,{'attr':{'class':'browser-default'}}) }}
+            </div>
+            <div class="col s6 input-field">
+                <label for="instruccion">Instruccion</label><br><br>
+                {{ form_widget(form.instruccion,{'attr':{'class':'browser-default'}}) }}
+            </div>
+        </div>
+        <h5>Datos del destinatario</h5>
+        <div class="row">
+            <div class="col s6 input-field">
+                {{ form_row(form.firma) }}
+            </div>
+            <div class="col s6 input-field">
+                {{ form_row(form.puesto) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6 input-field">
+                {{ form_row(form.dirigida) }}
+            </div>
+            <div class="col s6 input-field">
+                {{ form_row(form.asunto) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                {{ form_widget(form.institucion,{'attr':{'class':'browser-default'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                {{ form_row(form.observaciones,{'attr':{'class':'materialize-textarea'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_widget(form.archivo)}}
+        </div>
+        <div class="row">
+            {{ form_widget(form.guardar,{'attr':{'class':'btn col s12'}})}}
+        </div>
+        {{ form_end(form) }}
+        </div>
+        </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col s6 offset-s3 card-panel white" id="content">
+        
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#content').load("{{ path('documentos_get') }}",function(){$('#tabla').DataTable();} )
+    });
+</script>
+{% endblock %}
